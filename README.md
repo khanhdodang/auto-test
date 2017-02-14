@@ -1,5 +1,5 @@
 # auto-test
-Automation testing script using ES6, Babel 6, Mocha and Istanbul
+Automation testing script using ES6, Babel 6 and Mocha
 
 ## How to use
 + Go to https://portal.kobiton.com
