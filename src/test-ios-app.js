@@ -66,7 +66,6 @@ describe('Automation Test on iOS app', () => {
         .isSelected(ele)
         .getAttribute(ele)
       })
-      .elements('xpath', '//UIAStaticText[@name="Activity Indicators"]')
       .waitForElementByXPath('//UIAStaticText[@name="Activity Indicators"]')
       .back()
       .elementOrNull('xpath', '//UIAStaticTest')
