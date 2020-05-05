@@ -4,10 +4,43 @@ import BPromise from 'bluebird'
 import wd from 'wd'
 import {assert} from 'chai'
 
-const webdriverKobitonServerConfig = {
-  host: 'api.kobiton.com',
-  auth: '',
-  port: 80
+const kobitonEnv = process.env.ENV || 'test'
+const username = process.env.USERNAME || 'khanhdo'
+const apiKey = process.env.APIKEY || ''
+
+let webdriverKobitonServerConfig
+
+const env = {
+  test: {
+    protocol: 'http:',
+    host: 'api-test.kobiton.com',
+    auth: `${username}:${apiKey}`
+  },
+  staging: {
+    protocol: 'http:',
+    host: 'api-staging.kobiton.com',
+    auth: `${username}:${apiKey}`
+  },
+  prod: {
+    protocol: 'http:',
+    host: 'api.kobiton.com',
+    auth: `${username}:${apiKey}`
+  }
+}
+
+switch (kobitonEnv) {
+  case 'test':
+    webdriverKobitonServerConfig = env.test
+    break
+  case 'staging':
+    webdriverKobitonServerConfig = env.staging
+    break
+  case 'prod':
+    webdriverKobitonServerConfig = env.prod
+    break
+  default:
+    webdriverKobitonServerConfig = env.test
+    break
 }
 
 const desiredCaps = {
@@ -17,7 +50,7 @@ const desiredCaps = {
   captureScreenshots: true,
   app:                'http://appium.github.io/appium/assets/ApiDemos-debug.apk',
   deviceGroup:        'KOBITON',
-  deviceName:         'Galaxy S6',
+  deviceName:         '*',
   platformName:       'Android',
   fullReset: true
 }

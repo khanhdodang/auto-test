@@ -4,10 +4,28 @@ import BPromise from 'bluebird'
 import wd from 'wd'
 import {assert} from 'chai'
 
-const webdriverKobitonServerConfig = {
-  host: 'api.kobiton.com',
-  auth: '',
-  port: 80
+const kobitonEnv = process.env.ENV || 'test'
+const username = process.env.USERNAME || 'khanhdo'
+const apiKey = process.env.APIKEY || ''
+
+let webdriverKobitonServerConfig
+
+const env = {
+  test: {
+    protocol: 'http:',
+    host: 'api-test.kobiton.com',
+    auth: `${username}:${apiKey}`
+  },
+  staging: {
+    protocol: 'http:',
+    host: 'api-staging.kobiton.com',
+    auth: `${username}:${apiKey}`
+  },
+  prod: {
+    protocol: 'http:',
+    host: 'api.kobiton.com',
+    auth: `${username}:${apiKey}`
+  }
 }
 
 const desiredCaps = {
@@ -17,7 +35,7 @@ const desiredCaps = {
   captureScreenshots: true,
   app:                'https://s3.amazonaws.com/kobiton-dev/apps-test/UIKitCatalog-Test-Adhoc.ipa',
   deviceGroup:        'KOBITON',
-  deviceName:         'iPhone 6',
+  deviceName:         '*',
   platformName:       'iOS',
   browserName: '',
   fullReset: true
