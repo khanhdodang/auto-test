@@ -50,6 +50,7 @@ const successMsg = 'You logged into a secure area!'
 describe('Automation Test on Android web', () => {
 
   before(async () => {
+    console.log('webdriverKobitonServerConfig', webdriverKobitonServerConfig)
     driver = wd.promiseChainRemote(webdriverKobitonServerConfig)
     driver.on('status', (info) => {console.log(info.cyan)})
     driver.on('command', (meth, path, data) => {
