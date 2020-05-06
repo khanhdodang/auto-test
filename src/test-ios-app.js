@@ -5,27 +5,14 @@ import wd from 'wd'
 import {assert} from 'chai'
 
 const kobitonEnv = process.env.ENV || 'test'
+const host = process.env.HOST || 'api-test.kobiton.com'
 const username = process.env.USERNAME || 'khanhdo'
 const apiKey = process.env.APIKEY || ''
 
-let webdriverKobitonServerConfig
-
-const env = {
-  test: {
-    protocol: 'http:',
-    host: 'api-test.kobiton.com',
-    auth: `${username}:${apiKey}`
-  },
-  staging: {
-    protocol: 'http:',
-    host: 'api-staging.kobiton.com',
-    auth: `${username}:${apiKey}`
-  },
-  prod: {
-    protocol: 'http:',
-    host: 'api.kobiton.com',
-    auth: `${username}:${apiKey}`
-  }
+let webdriverKobitonServerConfig = {
+  protocol: 'http:',
+  host,
+  auth: `${username}:${apiKey}`
 }
 
 const desiredCaps = {
