@@ -20,7 +20,7 @@ const desiredCaps = {
   sessionDescription: 'This is an example for iOS app testing',
   deviceOrientation:  'portrait',
   captureScreenshots: true,
-  app:                'https://s3.amazonaws.com/kobiton-dev/apps-test/UIKitCatalog-Test-Adhoc.ipa',
+  app:                'https://s3-ap-southeast-1.amazonaws.com/kobiton-devvn/apps-test/UIKitCatalog-Test-Adhoc.ipa',
   deviceGroup:        'KOBITON',
   deviceName:         '*',
   platformName:       'iOS',
